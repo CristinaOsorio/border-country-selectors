@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CountriesModule } from './countries/countries.module';
-import { CountriesRoutingModule } from './countries/countries-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +12,7 @@ import { CountriesRoutingModule } from './countries/countries-routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CountriesModule
   ],

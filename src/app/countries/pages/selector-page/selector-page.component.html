@@ -1,1 +1,57 @@
-<p>selector-page works!</p>
+<h1 class="mt-5">Selectores anidados</h1>
+<hr>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="row mb-3">
+    <div class="col">
+      <label for="continent" class="form-label">Continente</label>
+      <select name="region" class="form-select" formControlName="region">
+        <option value=""> -- Seleccionar Continente -- </option>
+        <option *ngFor="let region of regions" [value]="region | lowercase">{{ region }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3" *ngIf="countries.length > 0">
+    <div class="col">
+      <label for="country" class="form-label">Paises</label>
+      <select name="country" class="form-select" formControlName="country">
+        <option value=""> -- Seleccionar País -- </option>
+        <option *ngFor="let country of countries" [value]="country.cca2">{{ country.name.official }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3" *ngIf="neighboringCountries.length > 0">
+    <div class="col">
+      <label for="neighboringCountry" class="form-label">Fronteras</label>
+      <select name="neighboringCountry" class="form-select" formControlName="neighboringCountry">
+        <option value=""> -- Seleccionar el pais fronterizo -- </option>
+        <option *ngFor="let neighboringCountry of neighboringCountries" [value]="neighboringCountry.cca2">{{
+          neighboringCountry.name.official }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row" *ngIf="loading">
+    <div class="col">
+      <div class="alert alert-primary">Cargando...</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <h5>Loading</h5>
+    {{ loading }}
+    <h5>Valid</h5>
+    {{ form.valid }}
+    <h5>Value</h5>
+    <pre>{{ form.value |  json }}</pre>
+  </div>
+</div>
